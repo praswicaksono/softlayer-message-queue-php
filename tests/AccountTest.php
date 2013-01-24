@@ -8,12 +8,12 @@ class AuthTest extends PHPUnit_Framework_TestCase
     public function testAuthentication()
     {
         $messaging = new SoftLayer_Messaging();
-        
+
         if(USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
         }
-        
+
         $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
 
         $request = $messaging->getClient()->getRequest();

@@ -12,10 +12,10 @@ class SoftLayer_Http_Client
     public static function getClient()
     {
         $client = new SoftLayer_Http_Client();
-        
+
         // Default adapter
         $client->setAdapter(new SoftLayer_Http_Adapter_Curl());
-        
+
         // Middleware
         $client->addMiddleware(new SoftLayer_Http_Middleware_Core());
         $client->addMiddleware(new SoftLayer_Http_Middleware_Json());

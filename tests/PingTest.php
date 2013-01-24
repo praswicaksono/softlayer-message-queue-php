@@ -13,7 +13,7 @@ class PingTest extends PHPUnit_Framework_TestCase
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::ping());
         }
-        
+
         $messaging->ping();
 
         $request = $messaging->getClient()->getRequest();

@@ -67,7 +67,9 @@ $body = <<<BODY
     "tags":[
         "tag1",
         "tag2"
-    ]
+    ],
+    "message_count":0,
+    "visible_message_count":0
 }
 BODY;
         $mock = new SoftLayer_Http_Response();
@@ -88,7 +90,9 @@ $document = <<<DOC
         "tag2"
     ],
     "visibility_interval":123456789,
-    "expiration":987654321
+    "expiration":987654321,
+    "message_count":0,
+    "visible_message_count":0
 }
 DOC;
 

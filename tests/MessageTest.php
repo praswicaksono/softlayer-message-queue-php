@@ -20,7 +20,20 @@ class MessageTest extends PHPUnit_Framework_TestCase
         }
 
         $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
+
+        if(!USE_MOCK) {
+            try {
+                $messaging->queue($queueName)->delete(true);
+            } catch(Exception $e) {
+                // ...
+            }
+        }
+
+        sleep(2);
+
         $messaging->queue($queueName)->create();
+
+        sleep(2);
 
         $messaging->queue($queueName)->message()->setBody('Example body')->create();
 
@@ -53,7 +66,20 @@ class MessageTest extends PHPUnit_Framework_TestCase
         }
 
         $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
+
+        if(!USE_MOCK) {
+            try {
+                $messaging->queue($queueName)->delete(true);
+            } catch(Exception $e) {
+                // ...
+            }
+        }
+
+        sleep(2);
+
         $messaging->queue($queueName)->create();
+
+        sleep(2);
 
         $messaging->queue($queueName)->message()->setBody('Example 1')->create();
         $messaging->queue($queueName)->message()->setBody('Example 2')->create();
@@ -61,6 +87,9 @@ class MessageTest extends PHPUnit_Framework_TestCase
 
         if(USE_MOCK == false) {
             sleep(10);
+
+            $this->assertEquals(3, $messaging->queue($queueName)->getMessageCount());
+            $this->assertEquals(3, $messaging->queue($queueName)->getVisibleMessageCount());
         }
 
         $messages = $messaging->queue($queueName)->messages(3);
@@ -78,6 +107,39 @@ class MessageTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, count($response->getBody()->items));
 
         $messaging->queue($queueName)->delete(true);
+    }
+
+    public function testPushALotOfMessages()
+    {
+        // Only a functional test for now.
+        if(USE_MOCK) {
+            return;
+        }
+
+        $queueName = "pushALotOfMessages01";
+
+        $messaging = new SoftLayer_Messaging();
+        $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
+
+        try {
+            $messaging->queue($queueName)->delete(true);
+        } catch(Exception $e) {
+            // ...
+        }
+
+        $messaging->queue($queueName)->create();
+
+        $failed = 0;
+
+        for($i = 0; $i < 1000; $i++) {
+            $messaging->queue($queueName)->message()->setBody("Example {$i}")->create();
+
+            if($messaging->getClient()->getResponse()->getStatus() >= 400) {
+                $failed += 1;
+            }
+        }
+
+        $this->assertEquals(0, $failed);
     }
 }
 

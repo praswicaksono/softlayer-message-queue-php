@@ -26,7 +26,7 @@ class TopicTest extends PHPUnit_Framework_TestCase
 
         $request = $messaging->getClient()->getRequest();
         $response = $messaging->getClient()->getResponse();
-        
+
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals('/topics', $request->getPath());
         $this->assertNotEmpty($request->getHeader('X-Auth-Token'));
@@ -86,7 +86,7 @@ class TopicTest extends PHPUnit_Framework_TestCase
             ->setEndpointType('http')
             ->setEndpoint($http_endpoint)
             ->create();
-        
+
         $request = $messaging->getClient()->getRequest();
         $response = $messaging->getClient()->getResponse();
 

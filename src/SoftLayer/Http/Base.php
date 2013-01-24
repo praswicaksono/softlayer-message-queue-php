@@ -49,7 +49,6 @@ abstract class SoftLayer_Http_Base
 
     public function setHeader($header, $value)
     {
-        
         $this->headers[$header] = $value;
     }
 

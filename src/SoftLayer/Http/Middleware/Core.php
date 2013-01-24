@@ -13,7 +13,6 @@ class SoftLayer_Http_Middleware_Core implements SoftLayer_Http_Middleware_Interf
 
         if($status >= 400) {
             $body = $response->getBody();
-            $message = $body->message?$body->message:"";
             $errors = "";
             $exception = "[{$status}]";
 
@@ -23,7 +22,6 @@ class SoftLayer_Http_Middleware_Core implements SoftLayer_Http_Middleware_Interf
                 }
             }
 
-            if($message) $exception .= " - {$message}";
             if($errors) $exception .= " - {$errors}";
 
             throw new Exception($exception);

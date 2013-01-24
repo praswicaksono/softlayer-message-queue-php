@@ -44,7 +44,7 @@ class SoftLayer_Messaging
 
         return false;
     }
-    
+
     public function stats($last = 'hour')
     {
         return $this->getClient()->get('/stats/'.$last)->getBody();
@@ -62,7 +62,7 @@ class SoftLayer_Messaging
     {
         $queues = array();
         $query = "/queues";
-        
+
         if($tags) {
             $query .= "?tags=".implode(',', $tags);
         }
@@ -92,7 +92,7 @@ class SoftLayer_Messaging
     {
         $topics = array();
         $query = "/topics";
-        
+
         if($tags) {
             $query .= "?tags=".implode(',', $tags);
         }

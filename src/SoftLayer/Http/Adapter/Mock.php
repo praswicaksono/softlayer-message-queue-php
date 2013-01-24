@@ -17,7 +17,7 @@ class SoftLayer_Http_Adapter_Mock implements SoftLayer_Http_Adapter_Interface
 
         return array_shift($this->responses);
     }
-    
+
     public function call(SoftLayer_Http_Request &$request, SoftLayer_Http_Response &$response)
     {
         $mock = $this->useMockResponse();

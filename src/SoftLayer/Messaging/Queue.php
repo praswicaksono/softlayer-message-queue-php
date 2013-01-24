@@ -2,12 +2,15 @@
 
 class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
 {
-    protected static $emit = array('name', 'tags', 'visibility_interval', 'expiration');
+    protected static $emit = array('name', 'tags', 'visibility_interval', 'expiration', 'message_count', 'visible_message_count');
+    protected $fetched = false;
 
     protected $name;
     protected $tags = array();
     protected $visibility_interval = 10;
     protected $expiration = 604800;
+    protected $message_count = 0;
+    protected $visible_message_count = 0;
 
     public function __construct($name = '')
     {
@@ -75,8 +78,27 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
         return $this->expiration;
     }
 
+    public function getMessageCount()
+    {
+        if(!$this->fetched) {
+            $this->fetch();
+        }
+
+        return $this->message_count;
+    }
+
+    public function getVisibleMessageCount()
+    {
+        if(!$this->fetched) {
+            $this->fetch();
+        }
+
+        return $this->visible_message_count;
+    }
+
     public function fetch()
     {
+        $this->fetched = true;
         return $this->unserialize($this->getClient()->get("/queues/".$this->getName())->getBody());
     }
 
