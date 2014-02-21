@@ -6,7 +6,7 @@ This code provides PHP 5.2+ bindings written in PHP to communicate with the
 
 Requirements
 ------------
-* PHP 5.2 or later
+* PHP 5.3 or later
 * cURL support
 * PHPUnit 3.6 or later (to run the test suite)
 * An active SoftLayer customer account with message queue service
