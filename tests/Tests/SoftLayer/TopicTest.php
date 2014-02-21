@@ -2,11 +2,11 @@
 
 namespace Test\SoftLayer;
 
-use SoftLayer\SoftLayer_Messaging;
-use SoftLayer\Messaging\SoftLayer_Messaging_Topic;
 use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Mock;
 use SoftLayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Http;
 use SoftLayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Queue;
+use SoftLayer\Messaging\SoftLayer_Messaging_Topic;
+use SoftLayer\SoftLayer_Messaging;
 use Tests\SoftLayer\Mock;
 
 class TopicTest extends \PHPUnit_Framework_TestCase
@@ -15,7 +15,7 @@ class TopicTest extends \PHPUnit_Framework_TestCase
     {
         $messaging = new SoftLayer_Messaging();
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -62,7 +62,7 @@ class TopicTest extends \PHPUnit_Framework_TestCase
     {
         $messaging = new SoftLayer_Messaging();
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -111,7 +111,7 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             ->setEndpoint($queue_endpoint)
             ->create();
 
-        if(USE_MOCK == false) {
+        if (USE_MOCK == false) {
             sleep(2);
         }
 

@@ -2,9 +2,9 @@
 
 namespace Test\SoftLayer;
 
-use SoftLayer\SoftLayer_Messaging;
-use SoftLayer\Messaging\SoftLayer_Messaging_Queue;
 use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Mock;
+use SoftLayer\Messaging\SoftLayer_Messaging_Queue;
+use SoftLayer\SoftLayer_Messaging;
 use Tests\SoftLayer\Mock;
 
 class QueueTest extends \PHPUnit_Framework_TestCase
@@ -13,7 +13,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
     {
         $messaging = new SoftLayer_Messaging();
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -67,7 +67,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
         $queueName = 'testQueueDetail01';
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -105,7 +105,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
         $queueName = 'testQueueDeletion01';
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -138,7 +138,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
     public function testQueueUpdate()
     {
         // Only a functional test for now.
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             return;
         }
 

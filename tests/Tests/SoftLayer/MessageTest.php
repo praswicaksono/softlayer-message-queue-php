@@ -2,8 +2,8 @@
 
 namespace Test\SoftLayer;
 
-use SoftLayer\SoftLayer_Messaging;
 use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Mock;
+use SoftLayer\SoftLayer_Messaging;
 use Tests\SoftLayer\Mock;
 
 class MessageTest extends \PHPUnit_Framework_TestCase
@@ -14,7 +14,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         $queueName = 'testQueue01';
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -24,10 +24,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
 
-        if(!USE_MOCK) {
+        if (!USE_MOCK) {
             try {
                 $messaging->queue($queueName)->delete(true);
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 // ...
             }
         }
@@ -57,7 +57,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         $queueName = 'testQueuePopMessages01';
 
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             $messaging->getClient()->setAdapter(new SoftLayer_Http_Adapter_Mock());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::authenticate());
             $messaging->getClient()->getAdapter()->addMockResponse(Mock::objectCreated());
@@ -70,10 +70,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
 
-        if(!USE_MOCK) {
+        if (!USE_MOCK) {
             try {
                 $messaging->queue($queueName)->delete(true);
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 // ...
             }
         }
@@ -88,7 +88,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         $messaging->queue($queueName)->message()->setBody('Example 2')->create();
         $messaging->queue($queueName)->message()->setBody('Example 3')->create();
 
-        if(USE_MOCK == false) {
+        if (USE_MOCK == false) {
             sleep(10);
 
             $this->assertEquals(3, $messaging->queue($queueName)->getMessageCount());
@@ -115,7 +115,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
     public function testPushALotOfMessages()
     {
         // Only a functional test for now.
-        if(USE_MOCK) {
+        if (USE_MOCK) {
             return;
         }
 
@@ -126,7 +126,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         try {
             $messaging->queue($queueName)->delete(true);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             // ...
         }
 
@@ -134,10 +134,10 @@ class MessageTest extends \PHPUnit_Framework_TestCase
 
         $failed = 0;
 
-        for($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $messaging->queue($queueName)->message()->setBody("Example {$i}")->create();
 
-            if($messaging->getClient()->getResponse()->getStatus() >= 400) {
+            if ($messaging->getClient()->getResponse()->getStatus() >= 400) {
                 $failed += 1;
             }
         }

@@ -1,8 +1,8 @@
 <?php
 
-include 'bootstrap.php';
-
 use SoftLayer\SoftLayer_Messaging;
+
+include 'bootstrap.php';
 
 $messaging = new SoftLayer_Messaging();
 $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
@@ -41,13 +41,13 @@ $queue->save();
 $queues = $messaging->queues();
 
 
-foreach($queues as $q) {
+foreach ($queues as $q) {
     // Each of these $q objects are also fully functional,
     // so I can add another tag and save it here.
     $q->addTag('tag3');
     $q->update();
 
-    echo $q->getName() . '(' . implode(',', $q->getTags()) . ')'. PHP_EOL;
+    echo $q->getName() . '(' . implode(',', $q->getTags()) . ')' . PHP_EOL;
 }
 
 

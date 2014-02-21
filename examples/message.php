@@ -1,8 +1,8 @@
 <?php
 
-include 'bootstrap.php';
-
 use SoftLayer\SoftLayer_Messaging;
+
+include 'bootstrap.php';
 
 $messaging = new SoftLayer_Messaging();
 $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
@@ -13,7 +13,7 @@ $queue = $messaging->queue('myQueue')->create();
 
 
 // Now I can start creating messages.
-for($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 10; $i++) {
     $queue->message("Example Message {$i}")->create();
 }
 
@@ -26,14 +26,14 @@ sleep(1);
 // $batch parameter which allows me to fetch up to 100.
 $messages = $queue->messages(10);
 
-foreach($messages as $m) {
+foreach ($messages as $m) {
     echo $m->getId() . ' : ' . $m->getBody() . PHP_EOL;
 }
 
 
 // Each of the message objects can delete itself once I complete
 // my work.
-foreach($messages as $m) {
+foreach ($messages as $m) {
     echo "Deleting: " . $m->getId() . PHP_EOL;
     $m->delete();
 }
@@ -46,7 +46,7 @@ $id = $messages[0]->getId();
 // Of course this will throw a 404 exception as I've already deleted it.
 try {
     $messaging->queue('myQueue')->message()->delete($id);
-} catch(Exception $e) {
+} catch (Exception $e) {
     echo $e->getMessage() . PHP_EOL;
 }
 

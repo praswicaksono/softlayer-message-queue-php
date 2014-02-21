@@ -1,9 +1,9 @@
 <?php
 
-include 'bootstrap.php';
-
-use SoftLayer\SoftLayer_Messaging;
 use SoftLayer\Messaging\SoftLayer_Messaging_Endpoint;
+use SoftLayer\SoftLayer_Messaging;
+
+include 'bootstrap.php';
 
 
 $messaging = new SoftLayer_Messaging();
@@ -46,7 +46,7 @@ $topic->subscription()
 // different queue.
 $subscriptions = $topic->subscriptions();
 
-foreach($subscriptions as $s) {
+foreach ($subscriptions as $s) {
     echo $s->getId() . ' : ' . $s->getEndpointType() . ' : ' . $s->getEndpoint()->getQueueName() . PHP_EOL;
 }
 
@@ -60,8 +60,12 @@ $topic->message('Example Message 1')->create();
 sleep(10);
 
 
-if(count($queue1->messages()) > 0) echo "Queue 1 got the message!" . PHP_EOL;
-if(count($queue2->messages()) > 0) echo "Queue 2 got the message!" . PHP_EOL;
+if (count($queue1->messages()) > 0) {
+    echo "Queue 1 got the message!" . PHP_EOL;
+}
+if (count($queue2->messages()) > 0) {
+    echo "Queue 2 got the message!" . PHP_EOL;
+}
 
 
 // Finally, I can delete the topic and all its subscribers.

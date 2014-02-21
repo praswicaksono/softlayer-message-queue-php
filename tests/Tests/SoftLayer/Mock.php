@@ -9,7 +9,7 @@ class Mock
     public static function ping()
     {
 
-$body =<<<BODY
+        $body = <<<BODY
 OK
 BODY;
 
@@ -22,7 +22,7 @@ BODY;
     public static function authenticate()
     {
 
-$body =<<<BODY
+        $body = <<<BODY
 {
     "token":"mocktoken",
     "status":"OK"
@@ -40,7 +40,7 @@ BODY;
     public static function queues()
     {
 
-$body = <<<BODY
+        $body = <<<BODY
 {
     "item_count":1,
     "items":[
@@ -63,7 +63,7 @@ BODY;
 
     public static function queueDetail()
     {
-$body = <<<BODY
+        $body = <<<BODY
 {
     "name":"testQueueDetail01",
     "visibility_interval":30,
@@ -86,7 +86,7 @@ BODY;
     public static function serializedQueue()
     {
 
-$document = <<<DOC
+        $document = <<<DOC
 {
     "name":"queue",
     "tags":[
@@ -106,7 +106,7 @@ DOC;
     public static function serializedTopic()
     {
 
-$document = <<<DOC
+        $document = <<<DOC
 {
     "name":"topic",
     "tags":[
@@ -122,7 +122,7 @@ DOC;
     public static function topics()
     {
 
-$body = <<<BODY
+        $body = <<<BODY
 {
     "item_count":1,
     "items":[
@@ -145,7 +145,7 @@ BODY;
 
     public static function subscriptions()
     {
-$body = <<<BODY
+        $body = <<<BODY
 {
     "item_count":1,
     "items":[
@@ -185,7 +185,7 @@ BODY;
 
     public static function messages()
     {
-$body = <<<BODY
+        $body = <<<BODY
 {
     "item_count":3,
     "items":[
@@ -224,7 +224,7 @@ BODY;
     public static function objectCreated()
     {
 
-$body = <<<BODY
+        $body = <<<BODY
 {"message":"Object created"}
 BODY;
 
@@ -239,7 +239,7 @@ BODY;
     public static function objectDeleted()
     {
 
-$body = <<<BODY
+        $body = <<<BODY
 {"message":"Object queued for deletion"}
 BODY;
 
@@ -247,6 +247,6 @@ BODY;
         $mock->setHeader('Content-Type', 'application/json');
         $mock->setBody($body);
 
-        return $mock;   
+        return $mock;
     }
 }
