@@ -1,12 +1,10 @@
 <?php
 
-namespace Softlayer;
+namespace SoftLayer;
 
-use Softlayer\HTTP\SoftLayer_Http_Client;
-use Softlayer\Messaging\SoftLayer_Messaging_Queue;
-use Softlayer\Messaging\SoftLayer_Messaging_Topic;
-
-SoftLayer_Messaging::__load_endpoints();
+use SoftLayer\Http\SoftLayer_Http_Client;
+use SoftLayer\Messaging\SoftLayer_Messaging_Queue;
+use SoftLayer\Messaging\SoftLayer_Messaging_Topic;
 
 class SoftLayer_Messaging
 {
@@ -19,8 +17,9 @@ class SoftLayer_Messaging
     private $account;
     private $client;
 
-    public function SoftLayer_Messaging($endpoint = "dal05", $private = false)
+    public function __construct($endpoint = "dal05", $private = false)
     {
+        $this->load_endpoints();
         $this->endpoint = "https://" . self::$endpoints[$endpoint][($private ? 'private' : 'public')] . "/v1";
     }
 
@@ -137,7 +136,7 @@ class SoftLayer_Messaging
         return $this->client;
     }
 
-    public static function __load_endpoints()
+    public function load_endpoints()
     {
         $root = dirname(__FILE__);
         $config = $root . self::$endpoints_config;

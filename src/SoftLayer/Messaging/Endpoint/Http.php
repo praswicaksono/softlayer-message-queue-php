@@ -1,8 +1,8 @@
 <?php
 
-namespace Softlayer\Messaging\Enpoint;
+namespace SoftLayer\Messaging\Enpoint;
 
-use Softlayer\Messaging\SoftLayer_Messaging_Entity;
+use SoftLayer\Messaging\SoftLayer_Messaging_Entity;
 
 class SoftLayer_Messaging_Endpoint_Http extends SoftLayer_Messaging_Entity
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Softlayer\Http\Middleware;
+namespace SoftLayer\Http\Middleware;
 
-use Softlayer\Http\SoftLayer_Http_Request;
-use Softlayer\Http\SoftLayer_Http_Response;
+use SoftLayer\Http\SoftLayer_Http_Request;
+use SoftLayer\Http\SoftLayer_Http_Response;
 
 interface SoftLayer_Http_Middleware_Interface
 {

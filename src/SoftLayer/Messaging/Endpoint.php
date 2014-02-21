@@ -1,9 +1,9 @@
 <?php
 
-namespace Softlayer\Messaging;
+namespace SoftLayer\Messaging;
 
-use Softlayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Http;
-use Softlayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Queue;
+use SoftLayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Http;
+use SoftLayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Queue;
 
 class SoftLayer_Messaging_Endpoint
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Softlayer\Http;
+namespace SoftLayer\Http;
 
-use Softlayer\Http\Adapter\SoftLayer_Http_Adapter_Curl;
-use Softlayer\Http\Middleware\SoftLayer_Http_Middleware_Core;
-use Softlayer\Http\Middleware\SoftLayer_Http_Middleware_Json;
+use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Curl;
+use SoftLayer\Http\Middleware\SoftLayer_Http_Middleware_Core;
+use SoftLayer\Http\Middleware\SoftLayer_Http_Middleware_Json;
 
 class SoftLayer_Http_Client
 {

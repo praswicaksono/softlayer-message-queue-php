@@ -1,8 +1,10 @@
 <?php
 
-namespace Softlayer\Http\Adapter;
+namespace SoftLayer\Http\Adapter;
 
-use Softlayer\Http\Adapter\SoftLayer_Http_Adapter_Interface;
+use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Interface;
+use SoftLayer\Http\SoftLayer_Http_Response;
+use SoftLayer\Http\SoftLayer_Http_Request;
 
 class SoftLayer_Http_Adapter_Curl implements SoftLayer_Http_Adapter_Interface
 {
@@ -31,7 +33,7 @@ class SoftLayer_Http_Adapter_Curl implements SoftLayer_Http_Adapter_Interface
         $body = curl_exec($curl);
 
         if ($body === false) {
-            throw new Exception(curl_error($curl));
+            throw new \Exception(curl_error($curl));
         }
 
         $info = curl_getinfo($curl);

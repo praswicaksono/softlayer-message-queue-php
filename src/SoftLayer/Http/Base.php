@@ -1,6 +1,6 @@
 <?php
 
-namespace Softlayer\Http;
+namespace SoftLayer\Http;
 
 abstract class SoftLayer_Http_Base
 {

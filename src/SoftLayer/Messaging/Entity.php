@@ -1,6 +1,6 @@
 <?php
 
-namespace Softlayer\Messaging;
+namespace SoftLayer\Messaging;
 
 abstract class SoftLayer_Messaging_Entity
 {

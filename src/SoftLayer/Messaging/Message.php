@@ -1,8 +1,8 @@
 <?php
 
-namespace Softlayer\Messaging;
+namespace SoftLayer\Messaging;
 
-use Softlayer\Messaging\SoftLayer_Messaging_Entity;
+use SoftLayer\Messaging\SoftLayer_Messaging_Entity;
 
 class SoftLayer_Messaging_Message extends SoftLayer_Messaging_Entity
 {

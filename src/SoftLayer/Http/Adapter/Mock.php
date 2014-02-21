@@ -1,10 +1,10 @@
 <?php
 
-namespace Softlayer\Http\Adapter;
+namespace SoftLayer\Http\Adapter;
 
-use Softlayer\Http\Adapter\SoftLayer_Http_Adapter_Interface;
-use Softlayer\Http\SoftLayer_Http_Request;
-use Softlayer\Http\SoftLayer_Http_Response;
+use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Interface;
+use SoftLayer\Http\SoftLayer_Http_Request;
+use SoftLayer\Http\SoftLayer_Http_Response;
 
 class SoftLayer_Http_Adapter_Mock implements SoftLayer_Http_Adapter_Interface
 {
