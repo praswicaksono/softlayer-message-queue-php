@@ -7,6 +7,7 @@ abstract class SoftLayer_Http_Base
     private $method;
     private $path;
     private $body;
+    private $baseUrl;
     private $headers = array();
 
     public function setBaseUrl($baseUrl)
