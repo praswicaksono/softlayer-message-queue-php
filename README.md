@@ -2,7 +2,6 @@ SoftLayer Message Queue - PHP Client
 ========================================
 
 [![Build Status](https://travis-ci.org/Atriedes/softlayer-message-queue-php.png?branch=master)](https://travis-ci.org/Atriedes/softlayer-message-queue-php)
-
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Atriedes/softlayer-message-queue-php/badges/quality-score.png?s=5f4c7a7863ceea25e59dd5152237b9ac2832c909)](https://scrutinizer-ci.com/g/Atriedes/softlayer-message-queue-php/)
 
 This code provides PHP 5.2+ bindings written in PHP to communicate with the
