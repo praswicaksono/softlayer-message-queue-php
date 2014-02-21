@@ -2,6 +2,7 @@
 
 include 'bootstrap.php';
 
+use SoftLayer\SoftLayer_Messaging;
 
 $messaging = new SoftLayer_Messaging();
 $messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);

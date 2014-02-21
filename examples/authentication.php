@@ -2,6 +2,7 @@
 
 include 'bootstrap.php';
 
+use SoftLayer\SoftLayer_Messaging;
 
 $messaging = new SoftLayer_Messaging();
 
