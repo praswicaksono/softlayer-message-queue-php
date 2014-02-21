@@ -1,5 +1,9 @@
 <?php
 
+namespace Softlayer\Messaging;
+
+use Softlayer\Messaging\SoftLayer_Messaging_Entity;
+
 class SoftLayer_Messaging_Message extends SoftLayer_Messaging_Entity
 {
     protected static $emit = array('id', 'body', 'fields', 'visibility_interval', 'visibility_delay');
@@ -67,13 +71,19 @@ class SoftLayer_Messaging_Message extends SoftLayer_Messaging_Entity
 
     public function create()
     {
-        $this->getClient()->post("/".$this->getParent()->getShortType()."s/".$this->getParent()->getName()."/messages", array('body' => $this->serialize()));
+        $this->getClient()->post(
+            "/" . $this->getParent()->getShortType() . "s/" . $this->getParent()->getName() . "/messages",
+            array('body' => $this->serialize())
+        );
         return $this;
     }
 
     public function delete($id = null)
     {
-        $this->getClient()->delete("/".$this->getParent()->getShortType()."s/".$this->getParent()->getName()."/messages/".($id?$id:$this->getId()));
+        $this->getClient()->delete(
+            "/" . $this->getParent()->getShortType() . "s/" . $this->getParent()->getName(
+            ) . "/messages/" . ($id ? $id : $this->getId())
+        );
         return $this;
     }
 }

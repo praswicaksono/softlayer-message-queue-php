@@ -1,5 +1,11 @@
 <?php
 
+namespace Softlayer\Http;
+
+use Softlayer\Http\Adapter\SoftLayer_Http_Adapter_Curl;
+use Softlayer\Http\Middleware\SoftLayer_Http_Middleware_Core;
+use Softlayer\Http\Middleware\SoftLayer_Http_Middleware_Json;
+
 class SoftLayer_Http_Client
 {
     private $baseUrl = '';
@@ -95,18 +101,18 @@ class SoftLayer_Http_Client
         $request->setHeaders($options['headers']);
         $request->setBody($options['body']);
 
-        foreach($this->defaultHeaders as $header => $value) {
+        foreach ($this->defaultHeaders as $header => $value) {
             $request->setHeader($header, $value);
         }
 
-        foreach($this->middleware as $middleware) {
+        foreach ($this->middleware as $middleware) {
             $middleware->filterRequest($request);
         }
 
         $this->adapter->call($request, $response);
 
-        foreach(array_reverse($this->middleware) as $middleware) {
-            $middleware->filterResponse($response);   
+        foreach (array_reverse($this->middleware) as $middleware) {
+            $middleware->filterResponse($response);
         }
 
         $this->setRequest($request);
@@ -115,7 +121,7 @@ class SoftLayer_Http_Client
 
     public function getRequest()
     {
-        if(!$this->request) {
+        if (!$this->request) {
             $this->request = new SoftLayer_Http_Request();
         }
         return $this->request;
@@ -123,7 +129,7 @@ class SoftLayer_Http_Client
 
     public function getResponse()
     {
-        if(!$this->response) {
+        if (!$this->response) {
             $this->response = new SoftLayer_Http_Response();
         }
         return $this->response;

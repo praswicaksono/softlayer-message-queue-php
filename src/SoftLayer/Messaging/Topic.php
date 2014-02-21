@@ -1,5 +1,9 @@
 <?php
 
+namespace Softlayer\Messaging;
+
+use Softlayer\Messaging\SoftLayer_Messaging_Entity;
+
 class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
 {
     protected static $emit = array('name', 'tags');
@@ -39,7 +43,7 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
     {
         $index = array_search($tag, $this->tags);
 
-        if($index !== false) {
+        if ($index !== false) {
             array_splice($this->tags, $index, 1);
         }
 
@@ -53,7 +57,7 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
 
     public function fetch()
     {
-        return $this->unserialize($this->getClient()->get("/topics/".$this->getName())->getBody());
+        return $this->unserialize($this->getClient()->get("/topics/" . $this->getName())->getBody());
     }
 
     public function create()
@@ -68,13 +72,13 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
 
     public function save()
     {
-        $this->getClient()->put("/topics/".$this->getName(), array('body' => $this->serialize()));
+        $this->getClient()->put("/topics/" . $this->getName(), array('body' => $this->serialize()));
         return $this;
     }
 
     public function delete($force = false)
     {
-        $this->getClient()->delete("/topics/".$this->getName(), array('params' => array('force' => $force)));
+        $this->getClient()->delete("/topics/" . $this->getName(), array('params' => array('force' => $force)));
         return $this;
     }
 
@@ -97,9 +101,9 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
     public function subscriptions()
     {
         $subscriptions = array();
-        $response = $this->getClient()->get("/topics/".$this->getName()."/subscriptions");
+        $response = $this->getClient()->get("/topics/" . $this->getName() . "/subscriptions");
 
-        foreach($response->getBody()->items as $item) {
+        foreach ($response->getBody()->items as $item) {
             $subscription = new SoftLayer_Messaging_Subscription();
             $subscription->setParent($this);
             $subscription->unserialize($item);

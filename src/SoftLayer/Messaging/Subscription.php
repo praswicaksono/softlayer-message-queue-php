@@ -1,5 +1,9 @@
 <?php
 
+namespace Softlayer\Messaging;
+
+use Softlayer\Messaging\SoftLayer_Messaging_Entity;
+
 class SoftLayer_Messaging_Subscription extends SoftLayer_Messaging_Entity
 {
     protected static $emit = array('id', 'endpoint_type', 'endpoint');
@@ -37,13 +41,19 @@ class SoftLayer_Messaging_Subscription extends SoftLayer_Messaging_Entity
 
     public function create()
     {
-        $this->getClient()->post("/topics/".$this->getParent()->getName()."/subscriptions", array('body' => $this->serialize()));
+        $this->getClient()->post(
+            "/topics/" . $this->getParent()->getName() . "/subscriptions",
+            array('body' => $this->serialize())
+        );
         return $this;
     }
 
     public function delete($id = null)
     {
-        $this->getClient()->delete("/".$this->getParent()->getShortType()."s/".$this->getParent()->getName()."/subscriptions/".($id?$id:$this->getId()));
+        $this->getClient()->delete(
+            "/" . $this->getParent()->getShortType() . "s/" . $this->getParent()->getName(
+            ) . "/subscriptions/" . ($id ? $id : $this->getId())
+        );
         return $this;
     }
 }

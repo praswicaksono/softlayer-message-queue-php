@@ -1,8 +1,8 @@
 {
     "endpoints": {
         "dal05": {
-          "public": "dal05.mq.softlayer.net",
-          "private": "dal05.mq.service.networklayer.com"
+            "public": "dal05.mq.softlayer.net",
+            "private": "dal05.mq.service.networklayer.com"
         }
-      }
+    }
 }

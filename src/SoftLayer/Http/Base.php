@@ -1,5 +1,7 @@
 <?php
 
+namespace Softlayer\Http;
+
 abstract class SoftLayer_Http_Base
 {
     private $method;
@@ -54,7 +56,7 @@ abstract class SoftLayer_Http_Base
 
     public function getHeader($header)
     {
-        if(!array_key_exists($header, $this->headers)) {
+        if (!array_key_exists($header, $this->headers)) {
             return "";
         }
 

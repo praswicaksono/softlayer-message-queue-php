@@ -1,5 +1,11 @@
 <?php
 
+namespace Softlayer\Http\Middleware;
+
+use Softlayer\Http\Middleware\SoftLayer_Http_Middleware_Interface;
+use Softlayer\Http\SoftLayer_Http_Request;
+use Softlayer\Http\SoftLayer_Http_Response;
+
 class SoftLayer_Http_Middleware_Core implements SoftLayer_Http_Middleware_Interface
 {
     public function filterRequest(SoftLayer_Http_Request &$request)
@@ -11,18 +17,20 @@ class SoftLayer_Http_Middleware_Core implements SoftLayer_Http_Middleware_Interf
     {
         $status = $response->getStatus();
 
-        if($status >= 400) {
+        if ($status >= 400) {
             $body = $response->getBody();
             $errors = "";
             $exception = "[{$status}]";
 
-            if(property_exists($body, 'errors')) {
-                foreach($body->errors as $category => $collection) {
+            if (property_exists($body, 'errors')) {
+                foreach ($body->errors as $category => $collection) {
                     $errors .= "{$category}: " . implode(", ", $collection);
                 }
             }
 
-            if($errors) $exception .= " - {$errors}";
+            if ($errors) {
+                $exception .= " - {$errors}";
+            }
 
             throw new Exception($exception);
         }

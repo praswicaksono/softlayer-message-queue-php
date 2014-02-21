@@ -1,5 +1,7 @@
 <?php
 
+namespace Softlayer\Http;
+
 class SoftLayer_Http_Response extends SoftLayer_Http_Base
 {
     private $status;

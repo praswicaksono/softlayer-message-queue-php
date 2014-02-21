@@ -1,8 +1,19 @@
 <?php
 
+namespace Softlayer\Messaging;
+
+use Softlayer\Messaging\SoftLayer_Messaging_Entity;
+
 class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
 {
-    protected static $emit = array('name', 'tags', 'visibility_interval', 'expiration', 'message_count', 'visible_message_count');
+    protected static $emit = array(
+        'name',
+        'tags',
+        'visibility_interval',
+        'expiration',
+        'message_count',
+        'visible_message_count'
+    );
     protected $fetched = false;
 
     protected $name;
@@ -44,7 +55,7 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
     {
         $index = array_search($tag, $this->tags);
 
-        if($index !== false) {
+        if ($index !== false) {
             array_splice($this->tags, $index, 1);
         }
 
@@ -80,7 +91,7 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
 
     public function getMessageCount()
     {
-        if(!$this->fetched) {
+        if (!$this->fetched) {
             $this->fetch();
         }
 
@@ -89,7 +100,7 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
 
     public function getVisibleMessageCount()
     {
-        if(!$this->fetched) {
+        if (!$this->fetched) {
             $this->fetch();
         }
 
@@ -99,7 +110,7 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
     public function fetch()
     {
         $this->fetched = true;
-        return $this->unserialize($this->getClient()->get("/queues/".$this->getName())->getBody());
+        return $this->unserialize($this->getClient()->get("/queues/" . $this->getName())->getBody());
     }
 
     public function create()
@@ -114,13 +125,13 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
 
     public function save()
     {
-        $this->getClient()->put("/queues/".$this->getName(), array('body' => $this->serialize()));
+        $this->getClient()->put("/queues/" . $this->getName(), array('body' => $this->serialize()));
         return $this;
     }
 
     public function delete($force = false)
     {
-        $this->getClient()->delete("/queues/".$this->getName(), array('params' => array('force' => $force)));
+        $this->getClient()->delete("/queues/" . $this->getName(), array('params' => array('force' => $force)));
         return $this;
     }
 
@@ -135,9 +146,12 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
     public function messages($batch = 1)
     {
         $messages = array();
-        $response = $this->getClient()->get("/queues/".$this->getName()."/messages", array('params' => array('batch' => $batch)));
+        $response = $this->getClient()->get(
+            "/queues/" . $this->getName() . "/messages",
+            array('params' => array('batch' => $batch))
+        );
 
-        foreach($response->getBody()->items as $item) {
+        foreach ($response->getBody()->items as $item) {
             $message = new SoftLayer_Messaging_Message();
             $message->setParent($this);
             $message->unserialize($item);

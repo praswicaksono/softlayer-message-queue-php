@@ -1,5 +1,7 @@
 <?php
 
+namespace Softlayer\Messaging;
+
 abstract class SoftLayer_Messaging_Entity
 {
     protected static $emit = array();
@@ -28,7 +30,7 @@ abstract class SoftLayer_Messaging_Entity
     {
         $parent = $this->getParent();
 
-        if(method_exists($parent, 'getRoot')) {
+        if (method_exists($parent, 'getRoot')) {
             return $parent->getRoot();
         }
 
@@ -52,8 +54,8 @@ abstract class SoftLayer_Messaging_Entity
 
     public function unserialize($object)
     {
-        foreach(static::$emit as $field) {
-            if(property_exists($object, $field)) {
+        foreach (static::$emit as $field) {
+            if (property_exists($object, $field)) {
                 $this->$field = $object->$field;
             }
         }

@@ -1,5 +1,11 @@
 <?php
 
+namespace Softlayer\Http\Adapter;
+
+use Softlayer\Http\Adapter\SoftLayer_Http_Adapter_Interface;
+use Softlayer\Http\SoftLayer_Http_Request;
+use Softlayer\Http\SoftLayer_Http_Response;
+
 class SoftLayer_Http_Adapter_Mock implements SoftLayer_Http_Adapter_Interface
 {
     private $responses = array();
@@ -11,7 +17,7 @@ class SoftLayer_Http_Adapter_Mock implements SoftLayer_Http_Adapter_Interface
 
     public function useMockResponse()
     {
-        if(!count($this->responses)) {
+        if (!count($this->responses)) {
             throw new Exception("No mock response available");
         }
 
@@ -27,7 +33,7 @@ class SoftLayer_Http_Adapter_Mock implements SoftLayer_Http_Adapter_Interface
         $response->setBody($mock->getBody());
         $response->setMethod($mock->getMethod());
 
-        foreach($mock->getHeaders() as $header => $value) {
+        foreach ($mock->getHeaders() as $header => $value) {
             $response->setHeader($header, $value);
         }
     }
