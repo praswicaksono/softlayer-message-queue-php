@@ -32,7 +32,7 @@ class SoftLayer_Http_Middleware_Core implements SoftLayer_Http_Middleware_Interf
                 $exception .= " - {$errors}";
             }
 
-            throw new Exception($exception);
+            throw new \Exception($exception);
         }
     }
 }

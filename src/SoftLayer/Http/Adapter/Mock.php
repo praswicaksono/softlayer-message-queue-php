@@ -18,7 +18,7 @@ class SoftLayer_Http_Adapter_Mock implements SoftLayer_Http_Adapter_Interface
     public function useMockResponse()
     {
         if (!count($this->responses)) {
-            throw new Exception("No mock response available");
+            throw new \Exception("No mock response available");
         }
 
         return array_shift($this->responses);
