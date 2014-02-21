@@ -1,9 +1,15 @@
 <?php
 
-require_once 'bootstrap.php';
-require_once 'mock.php';
+namespace Test\SoftLayer;
 
-class TopicTest extends PHPUnit_Framework_TestCase
+use SoftLayer\SoftLayer_Messaging;
+use SoftLayer\Messaging\SoftLayer_Messaging_Topic;
+use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Mock;
+use SoftLayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Http;
+use SoftLayer\Messaging\Enpoint\SoftLayer_Messaging_Endpoint_Queue;
+use Tests\SoftLayer\Mock;
+
+class TopicTest extends \PHPUnit_Framework_TestCase
 {
     public function testTopicsList()
     {
@@ -32,7 +38,7 @@ class TopicTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($request->getHeader('X-Auth-Token'));
 
         $this->assertEquals(true, is_array($topics));
-        $this->assertEquals('SoftLayer_Messaging_Topic', get_class(array_shift($topics)));
+        $this->assertEquals('SoftLayer\Messaging\SoftLayer_Messaging_Topic', get_class(array_shift($topics)));
 
         // It's fine if this is empty, but the document should always have
         // basic structure.

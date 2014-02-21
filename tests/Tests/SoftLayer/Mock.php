@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\SoftLayer;
+
+use SoftLayer\Http\SoftLayer_Http_Response;
+
 class Mock
 {
     public static function ping()

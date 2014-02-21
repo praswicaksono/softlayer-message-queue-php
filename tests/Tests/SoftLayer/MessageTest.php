@@ -1,9 +1,12 @@
 <?php
 
-require_once 'bootstrap.php';
-require_once 'mock.php';
+namespace Test\SoftLayer;
 
-class MessageTest extends PHPUnit_Framework_TestCase
+use SoftLayer\SoftLayer_Messaging;
+use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Mock;
+use Tests\SoftLayer\Mock;
+
+class MessageTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateMessage()
     {

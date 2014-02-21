@@ -1,9 +1,13 @@
 <?php
 
-require_once 'bootstrap.php';
-require_once 'mock.php';
+namespace Test\SoftLayer;
 
-class QueueTest extends PHPUnit_Framework_TestCase
+use SoftLayer\SoftLayer_Messaging;
+use SoftLayer\Messaging\SoftLayer_Messaging_Queue;
+use SoftLayer\Http\Adapter\SoftLayer_Http_Adapter_Mock;
+use Tests\SoftLayer\Mock;
+
+class QueueTest extends \PHPUnit_Framework_TestCase
 {
     public function testQueuesList()
     {
@@ -32,7 +36,7 @@ class QueueTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($request->getHeader('X-Auth-Token'));
 
         $this->assertEquals(true, is_array($queues));
-        $this->assertEquals('SoftLayer_Messaging_Queue', get_class(array_shift($queues)));
+        $this->assertEquals('SoftLayer\Messaging\SoftLayer_Messaging_Queue', get_class(array_shift($queues)));
 
         // It's fine if this is empty, but the document should always have
         // basic structure.
